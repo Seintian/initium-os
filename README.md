@@ -3,36 +3,35 @@
 ## Files Structure
 
 ```txt
-repo-name/
+initium-os/               # Root Repository
 ├── .git/
 ├── .gitignore
-├── README.md           # Documentation and build instructions
-├── LICENSE             # MIT or GPL are common for OS projects
-├── Makefile            # The main build entry point
-├── build/              # (Ignored) Intermediate object files (.o) go here
-├── dist/               # (Ignored) Final binaries (.iso, .bin) go here
-├── docs/               # Notes on memory maps, hardware specs, etc.
-├── scripts/            # Helper scripts (e.g., creating ISOs, GDB hooks)
-│   ├── linker.ld       # The Linker Script (CRITICAL for OS dev)
-│   └── make_iso.sh
-├── src/
-│   ├── arch/           # Architecture specific code
-│   │   └── x86_64/     # (Or i386/arm64)
-│   │       ├── boot/   # Assembly boot code (Multiboot header, start.S)
-│   │       └── lib/    # Arch-specific implementations (e.g., memcpy optimized)
-│   ├── drivers/        # Hardware drivers
-│   │   ├── vga/        # Screen printing
-│   │   ├── serial/     # Serial port (essential for debugging logging)
-│   │   └── keyboard/
-│   ├── include/        # Header files (.h)
-│   │   ├── kernel/
-│   │   └── drivers/
-│   ├── kernel/         # The core kernel logic (Architecture independent)
-│   │   ├── main.c      # Kernel entry point
-│   │   ├── memory.c    # Pmm/Vmm (Physical/Virtual memory managers)
-│   │   └── panic.c     # Kernel panic handler
-│   └── lib/            # Standard library replacements (libc-like functions)
-│       ├── string.c    # strlen, memcpy, memset implementation
-│       └── stdio.c     # printf implementation
-└── tests/              # Unit tests for libc functions
+├── README.md             # Overview of the whole project
+├── LICENSE
+│
+├── os/                   # THE ACTUAL OS (Clean, production code)
+│   ├── Makefile          # The main build system for the OS
+│   ├── build/            # OS build artifacts
+│   ├── scripts/          # Linker scripts, ISO generation
+│   │   └── linker.ld
+│   └── src/              # The source code (same structure as before)
+│       ├── arch/
+│       ├── kernel/
+│       ├── drivers/
+│       └── lib/
+│
+└── study/                # THE LABORATORY (Messy, learning, testing)
+    ├── notes/            # Markdown files, diagrams, PDFs
+    │   ├── 01-booting.md
+    │   └── 02-memory-map.md
+    │
+    ├── experiments/      # Tiny, independent C programs
+    │   ├── pointer_test.c
+    │   └── struct_packing.c
+    │
+    └── prototypes/       # Complex features built in user-space first
+        ├── heap_allocator/ # Write your malloc here first using standard C
+        │   ├── main.c
+        │   └── malloc_toy.c
+        └── file_system/
 ```

@@ -95,14 +95,19 @@ bochsout.txt
 
 # --- Directories ---
 # Ignore the build and distribution directories entirely
-build/
-dist/
-bin/
-sysroot/
+os/build/*
+os/dist/*
+os/bin/*
+os/sysroot/*
+
+# Ignore specific prototype build folders if you make them
+study/**/build/*
+study/**/bin/*
 
 # --- Tools & Editors ---
 # VS Code
 .vscode/*
+.history/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
